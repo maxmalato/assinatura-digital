@@ -1,6 +1,7 @@
 import { useState, useRef } from 'react'
 import html2canvas from 'html2canvas'
 import VMasker from 'vanilla-masker'
+import { Home, Mail, Phone } from 'lucide-react'
 
 export default function App() {
   const [name, setName] = useState('')
@@ -52,7 +53,7 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-gray-50 p-6 flex flex-col items-center">
-      <div className="w-full max-w-xl bg-white rounded-2xl shadow-md p-6 space-y-4">
+      <section className="w-full max-w-xl bg-white rounded-2xl shadow-md p-6 space-y-4">
         <h1 className="text-2xl font-bold text-center border-b pb-4">Crie sua assinatura digital</h1>
 
         <div className="space-y-2">
@@ -103,48 +104,51 @@ export default function App() {
             type="file"
             accept="image/*"
             onChange={handleImageUpload}
-            className="w-full border-2 border-dashed border-gray-400 rounded-md p-2"
+            className="w-full border-2 border-dashed border-gray-300 rounded-md p-2 cursor-pointer"
           />
         </div>
 
-        <div>
-          <h2 className="text-center text-gray-600 font-semibold mt-6 mb-2">Pré-visualização</h2>
+        <section>
+          <h2 className="text-center text-gray-600 font-semibold mt-5 mb-2 text-2xl">Pré-visualização</h2>
+        </section>
+
+        <article>
           <div
             ref={signatureRef}
-            className="flex items-center gap-4 p-4 border rounded-lg bg-white shadow"
-            style={{ backgroundColor: 'white', color: 'black' }}
+            className="flex gap-3 p-3 bg-white rounded-md"
           >
             {logo && (
-              <img src={logo} alt="Logo" className="h-22 object-contain border-r pr-2" />
+              <img src={logo} alt="Logo" className="size-28 rounded-md" />
             )}
             <div className="flex flex-col gap-1">
-              <div className='flex items-center gap-1'>
-                <box-icon name='user'></box-icon>
-                <span className="text-xl ">{name}</span>
+
+              <div className="font-semibold text-xl">{name}</div>
+
+              <div className='flex items-center gap-2'>
+                <Mail className='size-5'/>
+                <div>{email}</div>
               </div>
-              <div className='flex items-center gap-1'>
-                <box-icon name='phone'></box-icon>
-                <span className='text-sm'>{phone}</span>
+
+              <div className='flex items-center gap-2'>
+                <Phone className='size-5'/>
+                <div>{phone}</div>
               </div>
-              <div className='flex items-center gap-1'>
-                <box-icon name='envelope' size='sm'></box-icon>
-                <span className='text-sm'>{email}</span>
-              </div>
-              <div className='flex items-center gap-1 mt-3'>
-                <box-icon name='home' size='sm'></box-icon>
-                <span className='text-sm'>{address}</span>
+
+              <div className='flex items-center gap-2'>
+                <Home className='size-5'/>
+                <div>{address}</div>
               </div>
             </div>
           </div>
-        </div>
+        </article>
 
         <button
           onClick={handleDownload}
-          className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 rounded-md mt-4"
+          className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 rounded-md mt-4 cursor-pointer"
         >
           Baixar Assinatura
         </button>
-      </div>
+      </section>
     </div>
   )
 }
