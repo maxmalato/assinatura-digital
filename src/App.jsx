@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react'
-import html2canvas from 'html2canvas'
 import VMasker from 'vanilla-masker'
+import { toPng } from 'html-to-image'
 import { Home, Mail, Phone } from 'lucide-react'
 
 export default function App() {
@@ -33,21 +33,18 @@ export default function App() {
       const element = signatureRef.current
       if (!element) throw new Error('Elemento da assinatura não encontrado')
 
-      const canvas = await html2canvas(element, {
-        scale: 2,
-        backgroundColor: null
+      const dataUrl = await toPng(element, {
+        pixelRatio: 2,
+        backgroundColor: '#ffffff',
       })
 
-      const dataURL = canvas.toDataURL('image/png')
       const link = document.createElement('a')
-      link.href = dataURL
+      link.href = dataUrl
       link.download = 'assinatura.png'
-      document.body.appendChild(link)
       link.click()
-      document.body.removeChild(link)
     } catch (error) {
       console.error('Erro ao baixar a assinatura:', error)
-      alert('Ocorreu um erro ao baixar a assinatura. Por favor, tente novamente.')
+      alert('Erro ao gerar imagem da assinatura.')
     }
   }
 
@@ -112,31 +109,32 @@ export default function App() {
           <h2 className="text-center text-gray-600 font-semibold mt-5 mb-2 text-2xl">Pré-visualização</h2>
         </section>
 
+        {/* Pré-visualização */}
         <article>
           <div
             ref={signatureRef}
-            className="flex gap-3 p-3 bg-white rounded-md"
+            className="flex items-center gap-3 p-3"
           >
             {logo && (
-              <img src={logo} alt="Logo" className="size-28 rounded-md" />
+              <img src={logo} alt="Logo" className="size-26 rounded-md" />
             )}
-            <div className="flex flex-col gap-1">
+            <div className="flex flex-col gap-1 justify-center border-l pl-2">
 
               <div className="font-semibold text-xl">{name}</div>
 
               <div className='flex items-center gap-2'>
-                <Mail className='size-5'/>
-                <div>{email}</div>
+                <Mail size={18} />
+                <div className='text-sm'>{email}</div>
               </div>
 
               <div className='flex items-center gap-2'>
-                <Phone className='size-5'/>
-                <div>{phone}</div>
+                <Phone size={18} />
+                <div className='text-sm'>{phone}</div>
               </div>
 
               <div className='flex items-center gap-2'>
-                <Home className='size-5'/>
-                <div>{address}</div>
+                <Home size={18} />
+                <div className='text-sm'>{address}</div>
               </div>
             </div>
           </div>
