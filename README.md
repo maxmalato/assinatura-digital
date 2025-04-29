@@ -1,12 +1,39 @@
-# React + Vite
+# 🖋️ Gerador de Assinatura Digital
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este é um projeto React para gerar assinaturas digitais personalizadas, permitindo o preenchimento de informações profissionais e exportação da assinatura como imagem PNG.
 
-Currently, two official plugins are available:
+## ✨ Funcionalidades
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Preenchimento de:
+  - Nome completo
+  - Cargo
+  - Telefone (com máscara)
+  - E-mail
+  - Endereço da unidade
+  - Upload de logo da empresa
+- Visualização em tempo real da assinatura
+- Validação de campos obrigatórios
+- Feedback com `react-hot-toast`
+- Exportação da assinatura como imagem PNG
 
-## Expanding the ESLint configuration
+## 🚀 Tecnologias Utilizadas
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- [React 19](https://react.dev/)
+- [Tailwind CSS 4](https://tailwindcss.com/)
+- [html-to-image](https://www.npmjs.com/package/html-to-image)
+- [vanilla-masker](https://www.npmjs.com/package/vanilla-masker)
+- [lucide-react](https://lucide.dev/)
+- [react-hot-toast](https://react-hot-toast.com/)
+- [Vite](https://vitejs.dev/)
+## 🌐 Demonstração
+
+https://assinatura-digital.netlify.app/
+
+## 📦 Instalação
+
+```bash
+git clone https://github.com/maxmalato/assinatura-digital
+cd assinatura-digital
+npm install
+npm run dev
+
